@@ -1,2 +1,2 @@
 #!/bin/bash
-paste -d, | cut -d, -f1
+paste - - | tr "\t" " " |  cut -d ' ' -f1
