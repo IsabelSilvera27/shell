@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#script that displays To infinity and beyond
+kill "$(pgrep -f 7-highlander)"
