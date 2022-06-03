@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#(both files need to be pushed to git)
+
+pid=/tmp/my_process
+
+"echo $$ > $pid"
+
+while :
+	        do
+			        echo "I am alive!"
+				        sleep 2
+		done
