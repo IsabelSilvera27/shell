@@ -4,23 +4,29 @@
 pid=/var/run/my_process.pid
 aaa=manage_my_process
 
-if [ "${1}" == "start" ]
-then
-	 	./manage_my_process &
-		 	touch "/var/run/my_process.pid"
-			 	echo "$!" > "/var/run/my_process.pid"
-					 echo "manage_my_process started"
-				 elif [ "${1}" == "stop" ]
-				 then
-					 	sudo kill -9 "$(cat "/var/run/my_process.pid")" && rm -f "/var/run/my_process.pid"
-							echo "manage_my_process stopped"
-						elif [ "${1}" == "restart" ]
-						then
-								sudo kill -15 "$(cat "/var/run/my_process.pid")" && rm -f "/var/run/my_process.pid"
-									./manage_my_process &
-										touch "/var/run/my_process.pid"
-											echo "$!" > "/var/run/my_process.pid"
-												echo "manage_my_process restarted"
-											else
-													echo "Usage: manage_my_process {start|stop|restart}"
-fi
+case $1 in
+		
+		start)
+				        ./$aaa &
+						        echo $! > $pid
+								        echo "manage_my_process started"
+										        ;;
+																	        
+											        stop)
+															kill "$(cat $pid)"
+																	rm -f $pid
+																			echo "manage_my_process stopped"
+																					;;
+																											        
+																					        restart)
+																									kill "$(less $pid)"
+																											rm -f $pid
+																													./$aaa &
+																															echo $! > $pid
+																																	echo "manage_my_process restarted"
+																																			;;
+																																											
+																																			        *)
+																																							 echo "Usage: manage_my_process {start|stop|restart}"
+																																							 		;;
+																																											esac
